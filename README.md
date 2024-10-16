@@ -36,3 +36,8 @@
 - Email    :  admin@gmail.com
 - Password :  admin@gmail.com
 
+## For Cerate Unit Test for Post use Following Command:
+- php artisan make:test PostTest --unit
+
+## For run the unit test use following command: 
+php artisan test --testsuite=Unit
