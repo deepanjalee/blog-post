@@ -98,6 +98,9 @@
                                             </div>
                                         </div>
                                     @empty
+                                    <div class="" role="">
+                                       No Post Available
+                                      </div>
                                     @endforelse
 
 
