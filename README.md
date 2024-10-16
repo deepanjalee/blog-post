@@ -1,15 +1,15 @@
 ## Clone the Repository
-```bash
-git clone git clone https://github.com/deepanjalee/blog-post.git
+
+- git clone git clone https://github.com/deepanjalee/blog-post.git
 
 ## Move to Project Folder
-cd blog-post
+- cd blog-post
 
 ## Install Dependencies
 
 composer install 
 # (*Must install composer)
-npm inatall 
+npm install 
 # (*Must install Node.Js)
 
 ## Set Up Environment Variables
