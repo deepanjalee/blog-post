@@ -6,14 +6,13 @@
 - cd blog-post
 
 ## Install Dependencies
-
-composer install 
+- composer install 
 # (*Must install composer)
-npm install 
+- npm install 
 # (*Must install Node.Js)
 
 ## Set Up Environment Variables
-cp .env.example .env 
+- cp .env.example .env 
 ## Then Set up the database connection with the correct credentials.
 # EX:
 DB_CONNECTION=mysql
@@ -24,16 +23,16 @@ DB_USERNAME=your_db_user
 DB_PASSWORD=your_db_password
 
 ## Generate the Application Key
-php artisan key:generate
+- php artisan key:generate
 
 ## Run Migrations with seeds
-php artisan migrate --seed
+- php artisan migrate --seed
 
 ## Serve the Application Locally
-php artisan serve
-npm run dev
+- php artisan serve
+- npm run dev
 
 ## Use following Login Details :
-# Email    :  admin@gmail.com
-# Password :  admin@gmail.com
+- Email    :  admin@gmail.com
+- Password :  admin@gmail.com
 
