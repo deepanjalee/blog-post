@@ -7,9 +7,9 @@
 
 ## Install Dependencies
 - composer install 
-# (*Must install composer)
+## (*Must install composer)
 - npm install 
-# (*Must install Node.Js)
+## (*Must install Node.Js)
 
 ## Set Up Environment Variables
 - cp .env.example .env 
