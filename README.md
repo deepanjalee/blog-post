@@ -1,6 +1,6 @@
 ## Clone the Repository
 
-- git clone git clone https://github.com/deepanjalee/blog-post.git
+- git clone https://github.com/deepanjalee/blog-post.git
 
 ## Move to Project Folder
 - cd blog-post
