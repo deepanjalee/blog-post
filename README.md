@@ -15,12 +15,12 @@
 - cp .env.example .env 
 ## Then Set up the database connection with the correct credentials.
 # EX:
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=your_database_name
-DB_USERNAME=your_db_user
-DB_PASSWORD=your_db_password
+- DB_CONNECTION=mysql
+- DB_HOST=127.0.0.1
+- DB_PORT=3306
+- DB_DATABASE=your_database_name
+- DB_USERNAME=your_db_user
+- DB_PASSWORD=your_db_password
 
 ## Generate the Application Key
 - php artisan key:generate
