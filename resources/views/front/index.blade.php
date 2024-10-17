@@ -25,9 +25,58 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                    @php
+                        $user = Auth::user();
+                    @endphp
                     <ul class="navbar-nav me-auto">
+                        @guest
+                        @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    User
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                                    @if ($user->user_type == App\Enums\UserType::Administrator)
+                                        <a @class([
+                                            'dropdown-item',
+                                            'active' => request()->is('admin/users/create'),
+                                        ]) href="{{ route('admin.users.create') }}"> Add
+                                        </a>
+                                    @endif
 
 
+                                    <a @class(['dropdown-item', 'active' => request()->is('admin/users')]) href="{{ route('admin.users.index') }}"> Manage
+                                    </a>
+
+
+
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Post
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    @if ($user->user_type == App\Enums\UserType::Administrator)
+                                        <a @class([
+                                            'dropdown-item',
+                                            'active' => request()->is('admin/posts/create'),
+                                        ]) href="{{ route('admin.posts.create') }}"> Add
+                                        </a>
+                                    @endif
+                                    <a @class(['dropdown-item', 'active' => request()->is('admin/posts')]) href="{{ route('admin.posts.index') }}"> Manage
+                                    </a>
+
+
+
+                                </div>
+                            </li>
+                        @endguest
 
                     </ul>
 
@@ -81,29 +130,32 @@
                                         <div class="col-12 col-md-4">
                                             <div class="card-group">
                                                 <div class="card">
-                                                    <img src="{{ asset('media/background.jpg') }}" class="card-img-top" alt="...">
+                                                    <img src="{{ asset('media/background.jpg') }}" class="card-img-top"
+                                                        alt="...">
                                                     <div class="card-body">
                                                         {{-- <div class="card-img-overlay">
                                                             <h3 class="card-title text-center">{{ $object->title ?? "" }}</h3>
                                                         </div> --}}
-                                                        <h5 class="card-title">{{ $object->title ?? "" }}</h5>
-                                                        <p>  {!! Str::words(strip_tags($object->content), 20, '...') !!}</p>
-                                                        <a href="{{ route('front_posts.view', $object->id ) }}" class="btn btn-primary">
+                                                        <h5 class="card-title">{{ $object->title ?? '' }}</h5>
+                                                        <p> {!! Str::words(strip_tags($object->content), 20, '...') !!}</p>
+                                                        <a href="{{ route('front_posts.view', $object->id) }}"
+                                                            class="btn btn-primary">
                                                             <i class="bi bi-eye-fill"></i> View
                                                         </a>
 
                                                     </div>
                                                     <div class="card-footer">
-                                                        <small class="text-muted">Published: {{ date('Y-m-d', strtotime( $object->published_at )) }}</small>
+                                                        <small class="text-muted">Published:
+                                                            {{ date('Y-m-d', strtotime($object->published_at)) }}</small>
                                                     </div>
                                                 </div>
 
                                             </div>
                                         </div>
                                     @empty
-                                    <div class="" role="">
-                                       No Post Available
-                                      </div>
+                                        <div class="" role="">
+                                            No Post Available
+                                        </div>
                                     @endforelse
 
 
