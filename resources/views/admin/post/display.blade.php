@@ -6,6 +6,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                @include('layouts.alert')
                 <div class="card">
                     <div class="card-header">{{ $page_name }}</div>
 
