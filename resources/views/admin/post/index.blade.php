@@ -38,7 +38,9 @@
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Name</th>
-                                            <th scope="col">Status</th>
+                                            @if ($auth_user->user_type == App\Enums\UserType::Administrator)
+                                                <th scope="col">Status</th>
+                                            @endif
 
                                             <th scope="col">Action</th>
                                         </tr>
@@ -48,18 +50,22 @@
                                             <tr>
                                                 <th scope="row">{{ $object->id ?? '' }}</th>
                                                 <td>{{ $object->title ?? '' }}</td>
-                                                <td>
-                                                    <div class="form-check">
-                                                        <input class="form-check-input status-checkbox" type="checkbox"
-                                                            value="{{ $object->status }}" id="status-{{ $object->id }}"
-                                                            name="status" data-id="{{ $object->id }}"
-                                                            {{ $object->status == 1 ? 'checked' : '' }}>
-                                                        <label class="form-check-label" for="status-{{ $object->id }}" id="status-lable-{{ $object->id }}">
-                                                            {{ $object->status == 1 ? 'Published' : 'Pending' }}
-                                                        </label>
-                                                    </div>
+                                                @if ($auth_user->user_type == App\Enums\UserType::Administrator)
+                                                    <td>
+                                                        <div class="form-check">
+                                                            <input class="form-check-input status-checkbox" type="checkbox"
+                                                                value="{{ $object->status }}"
+                                                                id="status-{{ $object->id }}" name="status"
+                                                                data-id="{{ $object->id }}"
+                                                                {{ $object->status == 1 ? 'checked' : '' }}>
+                                                            <label class="form-check-label" for="status-{{ $object->id }}"
+                                                                id="status-lable-{{ $object->id }}">
+                                                                {{ $object->status == 1 ? 'Published' : 'Pending' }}
+                                                            </label>
+                                                        </div>
 
-                                                </td>
+                                                    </td>
+                                                @endif
 
                                                 <td class="text-nowrap">
                                                     <div class="d-flex align-items-center">
@@ -68,11 +74,14 @@
                                                             class="btn btn-info btn-sm mx-2 text-white" target="_blank">
                                                             <i class="bi bi-eye-fill"></i>
                                                         </a>
-                                                        <a type="button" href="{{ route($btn_route_edit, $object->id) }}"
-                                                            class="btn btn-warning btn-sm mx-2 text-white">
-                                                            <i class="bi bi-pencil-square"></i>
-                                                        </a>
 
+                                                        @if ($auth_user->user_type == App\Enums\UserType::Administrator)
+                                                            <a type="button"
+                                                                href="{{ route($btn_route_edit, $object->id) }}"
+                                                                class="btn btn-warning btn-sm mx-2 text-white">
+                                                                <i class="bi bi-pencil-square"></i>
+                                                            </a>
+                                                        @endif
 
                                                     </div>
 

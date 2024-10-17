@@ -33,6 +33,7 @@
                         <div class="row mt-3">
                             <div class="col-12">
 
+                                {{-- @dd($auth_user); --}}
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -41,7 +42,9 @@
                                             <th scope="col">Mobile</th>
                                             <th scope="col">Email</th>
                                             <th scope="col">User Type</th>
-                                            <th scope="col">Action</th>
+                                            @if ($auth_user->user_type == App\Enums\UserType::Administrator)
+                                                <th scope="col">Action</th>
+                                            @endif
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -52,32 +55,36 @@
                                                 <td>{{ $object->mobile ?? '' }}</td>
                                                 <td>{{ $object->email ?? '' }}</td>
                                                 <td>{{ $object->user_type_name ?? '' }}</td>
-                                                <td class="text-nowrap">
-                                                    <div class="d-flex align-items-center">
-                                                        <a type="button" href="{{ route($btn_route_edit, $object->id) }}"
-                                                            class="btn btn-warning btn-sm mx-2 text-white">
-                                                            <i class="bi bi-pencil-square"></i>
-                                                        </a>
+                                                @if ($auth_user->user_type == App\Enums\UserType::Administrator)
+                                                    <td class="text-nowrap">
+                                                        <div class="d-flex align-items-center">
+                                                            <a type="button"
+                                                                href="{{ route($btn_route_edit, $object->id) }}"
+                                                                class="btn btn-warning btn-sm mx-2 text-white">
+                                                                <i class="bi bi-pencil-square"></i>
+                                                            </a>
 
-                                                        <form action="{{ route($btn_route_delete, $object->id) }}"
-                                                            method="POST">
-                                                            @method('DELETE')
-                                                            @csrf
+                                                            <form action="{{ route($btn_route_delete, $object->id) }}"
+                                                                method="POST">
+                                                                @method('DELETE')
+                                                                @csrf
 
-                                                            <button class=" btn btn-danger btn-sm mx-2 text-white">
-                                                                <i class="bi bi-trash3-fill"></i>
-                                                            </button>
-                                                        </form>
-                                                    </div>
+                                                                <button class=" btn btn-danger btn-sm mx-2 text-white">
+                                                                    <i class="bi bi-trash3-fill"></i>
+                                                                </button>
+                                                            </form>
+                                                        </div>
 
 
-                                                </td>
+                                                    </td>
+                                                @endif
+
 
                                             </tr>
                                         @empty
-                                        <tr>
-                                            <th colspan="6">No Data Found</th>
-                                        </tr>
+                                            <tr>
+                                                <th colspan="6">No Data Found</th>
+                                            </tr>
                                         @endforelse
 
 

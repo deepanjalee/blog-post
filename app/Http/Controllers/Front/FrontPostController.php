@@ -29,8 +29,14 @@ class FrontPostController extends Controller
     public function singlePost(Post $post){
 
 
-        $this->data['object'] = $post;
-        $this->data['page_name'] = $this->name . " Details" ;
-        return view('admin.post.display', $this->data);
+        if($post->status == 0){
+            return redirect()->back()->with('error', $post->title . ' not Published Yet..');
+        }
+        if($post->status == 1){
+            $this->data['object'] = $post;
+            $this->data['page_name'] = $this->name . " Details" ;
+            return view('admin.post.display', $this->data);
+        }
+
     }
 }

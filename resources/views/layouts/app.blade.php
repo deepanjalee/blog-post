@@ -48,11 +48,14 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-                                    <a @class([
-                                        'dropdown-item',
-                                        'active' => request()->is('admin/users/create'),
-                                    ]) href="{{ route('admin.users.create') }}"> Add
-                                    </a>
+                                    @if ($user->user_type == App\Enums\UserType::Administrator)
+                                        <a @class([
+                                            'dropdown-item',
+                                            'active' => request()->is('admin/users/create'),
+                                        ]) href="{{ route('admin.users.create') }}"> Add
+                                        </a>
+                                    @endif
+
 
                                     <a @class(['dropdown-item', 'active' => request()->is('admin/users')]) href="{{ route('admin.users.index') }}"> Manage
                                     </a>
@@ -68,13 +71,13 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
+                                    @if ($user->user_type == App\Enums\UserType::Administrator)
                                     <a @class([
                                         'dropdown-item',
                                         'active' => request()->is('admin/posts/create'),
                                     ]) href="{{ route('admin.posts.create') }}"> Add
                                     </a>
-
+                                    @endif
                                     <a @class(['dropdown-item', 'active' => request()->is('admin/posts')]) href="{{ route('admin.posts.index') }}"> Manage
                                     </a>
 

@@ -31,11 +31,13 @@ class PostController extends Controller
 
     public function index(Request $request)
     {
+        $auth_user = Auth::user();
         $posts = Post::latest();
 
         if ($request->title != "" && $request->has('title')) {
             $posts = $posts->where('title', 'like', "%" . $request->title . "%");
         }
+        $this->data['auth_user'] = $auth_user;
         $this->data['objects'] = $posts->paginate(env('PAGINATION'))->appends(request()->query());
         $this->data['page_name'] = $this->name . " Manage";
         $this->data['btn_name'] = $this->name . " Add";

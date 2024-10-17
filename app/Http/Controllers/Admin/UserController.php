@@ -32,6 +32,7 @@ class UserController extends Controller
 
     public function index(Request $request)
     {
+        $auth_user = Auth::user();
         $users = User::latest();
 
         $search = $request->common_search;
@@ -46,6 +47,7 @@ class UserController extends Controller
 
 
 
+        $this->data['auth_user'] = $auth_user;
         $this->data['objects'] = $users->paginate(env('PAGINATION'))->appends(request()->query());
         $this->data['page_name'] = $this->name . " Manage";
         $this->data['btn_name'] = $this->name . " Add";
