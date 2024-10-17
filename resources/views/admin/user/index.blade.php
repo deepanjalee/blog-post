@@ -75,6 +75,9 @@
 
                                             </tr>
                                         @empty
+                                        <tr>
+                                            <th colspan="6">No Data Found</th>
+                                        </tr>
                                         @endforelse
 
 

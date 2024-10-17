@@ -56,7 +56,7 @@
                                             <div class="col-12 col-md-6 mb-3">
                                                 <label for="password">Password</label>
                                                 <input type="password" name="password"
-                                                    id="password"class="form-control @error('password') is-invalid @enderror"
+                                                    id="password" class="form-control @error('password') is-invalid @enderror"
                                                     placeholder="Password"
                                                     value="{{ old('password') ? old('password') : $object->password ?? '' }}">
                                                 @error('password')

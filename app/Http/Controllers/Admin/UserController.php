@@ -99,7 +99,7 @@ class UserController extends Controller
         //
     }
 
-    public function update(Request $request, User $user)
+    public function update(UserRequest $request, User $user)
     {
         $auth_user = Auth::user();
         if ($auth_user != null) {
@@ -109,7 +109,7 @@ class UserController extends Controller
             $request['updated_by'] =  $updated_by;
             $object = $user->update($request->all());
         }
-        if ($user != null) {
+        if ($user == null) {
             Log::channel('user_log')->info("User update() ---- Created User Not Found.");
             return redirect(route($this->routeName . '.index'))->with('error', $this->name . ' Updated User Not Found.');
         }
@@ -123,7 +123,6 @@ class UserController extends Controller
             $auth_user = Auth::user()->id;
             if ($user != null) {
                 $user->deleted_by =  $auth_user;
-                // $user->deleted_at =  Carbon::now();
                 $user->save();
                 $user->delete();
                 return redirect(route($this->routeName . '.index'))->with('status',  $this->name .  ' Deleted Successfully')->with('delete');

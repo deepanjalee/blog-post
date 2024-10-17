@@ -40,7 +40,7 @@ class UserRequest extends FormRequest
             case 'PATCH': {
                     return [
                         'name' => 'required',
-                        'email' => 'required|unique:users,email',
+                       'email' => 'required|unique:users,email,'. $this->user->id,
                         'mobile' => 'nullable|min:9',
                         'password' => 'required',
                         'user_type' => 'required',
